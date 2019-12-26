@@ -1,6 +1,6 @@
 # knitr-markdown-engines
 
-This repository illustrates the basic usages of Rmarkdown and Knitr with different engines (R, Bash, Python, Stan, C++), and compile them into pdfs. Two templates(**Rmarkdown-engines.rmd**, **Knitr-engines.R**) are added in this repository.
+This repository illustrates the basic usages of Rmarkdown and Knitr with different engines (R, Bash, Python, Stan, C++), and compile them into pdfs. Two templates(**Rmarkdown-template.rmd**, **Knitr-template.R**) are added in this repository.
 
 **Note:**
 1. It is hightly suggested to use Rmarkdown format to write the code;
