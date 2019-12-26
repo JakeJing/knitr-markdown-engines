@@ -1,0 +1,130 @@
+---
+title: "R Markdown with Other Engines"
+author: "Yingqi Jing"
+date: "`r format(Sys.time(), '%B %e, %Y')`"
+header-includes:
+  - \usepackage{textcomp}
+  - \renewcommand{\thefigure}{S\arabic{figure}}
+  - \renewcommand{\thetable}{S\arabic{table}}
+  - \renewcommand{\thesection}{S\arabic{section}}
+  - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
+  - \usepackage{tocloft}
+  - \settowidth{\cftsecnumwidth}{S10x}
+output: 
+  pdf_document:
+   fig_crop: true
+   fig_caption: true
+   latex_engine: xelatex
+   toc: true
+   toc_depth: 4
+   number_section: true
+   pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(Rcpp)
+library(rstan)
+knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {if(before) {par(family=my.font)} else NULL})
+opts_chunk$set(fig.path='figures/',
+               dev = 'cairo_pdf', dev.args=list(bg='transparent'), # or quartz_pdf (for lattice)
+               fig.height = 5,
+               fig.width = 6,
+               engine.path = list(python = '/usr/local/bin/python3'),
+               python.reticulate = FALSE,
+               message = F,
+               warning = F,
+               autodep=T,
+               cache.comments=F,
+               crop=T,
+               comment=NA,
+               pars=T)
+# graphics setup:
+my.font = 'Helvetica'
+# ggplot
+theme_set(theme_bw(base_size = 24) +
+            theme(text = element_text(family = my.font),
+                  plot.background = element_rect(fill = "transparent", colour = NA)))
+
+options(width=180)
+```
+
+\clearpage
+
+R Markdown
+======
+
+Including Plots
+----------
+
+You can also embed plots, for example:
+
+```{r pressure, echo=F, cache=T, fig.height = 4, fig.width = 5, fig.cap="Relationship between temperature and presure"}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+### subsubsection
+
+```{r cars}
+summary(cars)
+```
+
+Python code chunk
+======
+```{python}
+x = 'hello, python world!'
+print(x.split(' '))
+```
+
+C++ code chunk
+=======
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+// [[Rcpp::export]]
+NumericVector timesTwo(NumericVector x) {
+  return x * 2;
+}
+```
+
+```{r}
+timesTwo(10) # test function in R chunk or console
+```
+
+Bash or Fish script
+========
+
+```{Bash}
+echo "Hello Bash"
+```
+
+```{Fish}
+echo "Hello Fish"
+```
+
+Stan code chunk
+==========
+
+```{stan, output.var="ex1"}
+parameters {
+  real y[2]; 
+} 
+model {
+  y[1] ~ normal(0, 1);
+  y[2] ~ double_exponential(0, 2);
+} 
+```
+
+```{r}
+fit <- sampling(ex1, chains = 1) 
+print(fit)
+```
+
+
+
+
+
