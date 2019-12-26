@@ -66,9 +66,17 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+```{r, include=FALSE}
+#  one chunk of code, but it will still be evaluated
+x = 1+1
+print(x)
+```
+
+
+
 ### subsubsection
 
-```{r cars}
+```{r cars, results='hide'}
 summary(cars)
 ```
 
@@ -109,7 +117,9 @@ echo "Hello Fish"
 Stan code chunk
 ==========
 
-```{stan, output.var="ex1"}
+We can assign the stan code to a variable ($model1$), and can use this later in the `R` code chunk. 
+
+```{stan, output.var="model1"}
 parameters {
   real y[2]; 
 } 
@@ -119,12 +129,7 @@ model {
 } 
 ```
 
-```{r}
-fit <- sampling(ex1, chains = 1) 
+```{r, message=FALSE}
+fit <- sampling(model1, chains = 1) 
 print(fit)
 ```
-
-
-
-
-
