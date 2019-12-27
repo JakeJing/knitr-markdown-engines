@@ -24,15 +24,18 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 library(ggplot2)
-library(Rcpp)
-library(rstan)
+library(Rcpp) # for running cpp code in R
+library(rstan) # for running stan code in R
+library(reticulate) # for running python code in R
+use_python('/usr/local/bin/python3') #set the python engine path
+library(JuliaCall) # for running julia code in R
 knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {if(before) {par(family=my.font)} else NULL})
 opts_chunk$set(fig.path='figures/',
                dev = 'cairo_pdf', dev.args=list(bg='transparent'), # or quartz_pdf (for lattice)
                fig.height = 5,
                fig.width = 6,
-               engine.path = list(python = '/usr/local/bin/python3'),
-               python.reticulate = FALSE,
+               #engine.path = list(julia = '/Applications/Julia-1.3.app/Contents/Resources/julia/bin/'), # do not use engine path, it does not allow variable inheritance across chunks
+               python.reticulate = T,  # should set as T for variable inheritance across chunks
                message = F,
                warning = F,
                autodep=T,
@@ -66,7 +69,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r, include=FALSE}
+```{r print varaiable, include=FALSE}
 #  one chunk of code, but it will still be evaluated
 x = 1+1
 print(x)
@@ -82,15 +85,23 @@ summary(cars)
 
 Python code chunk
 ======
+
+**Note:** `python.reticulate = T` can support variable inheritance across different chunk.
+
 ```{python}
 x = 'hello, python world!'
 print(x.split(' '))
 ```
 
+```{python}
+x + " another chunk"
+```
+
+
 C++ code chunk
 =======
 
-```{Rcpp}
+```{Rcpp, define a function}
 #include <Rcpp.h>
 using namespace Rcpp;
 // [[Rcpp::export]]
@@ -100,18 +111,40 @@ NumericVector timesTwo(NumericVector x) {
 ```
 
 ```{r}
-timesTwo(10) # test function in R chunk or console
+out = timesTwo(10) # test function in R chunk or console
+out
 ```
 
-Bash or Fish script
+Julia code chunk
+=======
+
+It seems that Julia code can be inherited across different chunks. This is one big advantage!
+
+```{julia}
+# the semicolon holds printing
+list1 = ["Julia", "is fast!"];
+println(list1)
+mystring = "my test sting for julia"
+```
+
+```{julia}
+mystringnew = "$(mystring) new";
+println(mystringnew)
+```
+
+
+Bash script
 ========
 
-```{Bash}
+**Note:** Bash script in one chunk **cannot** be inherited by another chunk!
+
+```{bash}
 echo "Hello Bash"
 ```
 
-```{Fish}
-echo "Hello Fish"
+```{bash}
+FILE='bash_name'
+echo $FILE
 ```
 
 Stan code chunk
@@ -121,15 +154,15 @@ We can assign the stan code to a variable ($model1$), and can use this later in 
 
 ```{stan, output.var="model1"}
 parameters {
-  real y[2]; 
-} 
+  real y[2];
+}
 model {
   y[1] ~ normal(0, 1);
   y[2] ~ double_exponential(0, 2);
-} 
+}
 ```
 
 ```{r, message=FALSE}
-fit <- sampling(model1, chains = 1) 
+fit <- sampling(model1, chains = 1)
 print(fit)
 ```
