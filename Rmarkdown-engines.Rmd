@@ -27,7 +27,7 @@ library(ggplot2)
 library(Rcpp) # for running cpp code in R
 library(rstan) # for running stan code in R
 library(reticulate) # for running python code in R
-use_python('/usr/local/bin/python3') #set the python engine path
+use_python('/usr/local/bin/python3', required = T) #set the python engine path
 library(JuliaCall) # for running julia code in R
 knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {if(before) {par(family=my.font)} else NULL})
 opts_chunk$set(fig.path='figures/',
@@ -35,7 +35,7 @@ opts_chunk$set(fig.path='figures/',
                fig.height = 5,
                fig.width = 6,
                #engine.path = list(julia = '/Applications/Julia-1.3.app/Contents/Resources/julia/bin/'), # do not use engine path, it does not allow variable inheritance across chunks
-               python.reticulate = T,  # should set as T for variable inheritance across chunks
+               # python.reticulate = T,  # seem to be not necessary
                message = F,
                warning = F,
                autodep=T,
@@ -76,7 +76,6 @@ print(x)
 ```
 
 
-
 ### subsubsection
 
 ```{r cars, results='hide'}
@@ -86,15 +85,36 @@ summary(cars)
 Python code chunk
 ======
 
-**Note:** `python.reticulate = T` can support variable inheritance across different chunk.
+Access objects between R and Python
+----------
+
+### py$x in R chunk vs. r.x in python chunk
+
+- Access to objects created within Python chunks from R using the py object (e.g. py$x would access an x variable created within Python from R).
+
+- Access to objects created within R chunks from Python using the r object (e.g. r.x would access to x variable created within R from Python)
+
 
 ```{python}
 x = 'hello, python world!'
 print(x.split(' '))
 ```
 
+
+```{r}
+# source the python script
+# source_python("flights.py")
+# py_install("pandas")
+
+# using py$x to inherit a python object 
+newvar = paste(py$x, "add R")
+print(newvar)
+```
+
+
 ```{python}
-x + " another chunk"
+# using r.x to access an R object
+print(r.newvar)
 ```
 
 
@@ -120,17 +140,17 @@ Julia code chunk
 
 It seems that Julia code can be inherited across different chunks. This is one big advantage!
 
-```{julia}
-# the semicolon holds printing
-list1 = ["Julia", "is fast!"];
-println(list1)
-mystring = "my test sting for julia"
-```
+<!-- ```{julia} -->
+<!-- # the semicolon holds printing -->
+<!-- list1 = ["Julia", "is fast!"]; -->
+<!-- println(list1) -->
+<!-- mystring = "my test sting for julia" -->
+<!-- ``` -->
 
-```{julia}
-mystringnew = "$(mystring) new";
-println(mystringnew)
-```
+<!-- ```{julia} -->
+<!-- mystringnew = "$(mystring) new"; -->
+<!-- println(mystringnew) -->
+<!-- ``` -->
 
 
 Bash script
@@ -152,17 +172,17 @@ Stan code chunk
 
 We can assign the stan code to a variable ($model1$), and can use this later in the `R` code chunk. 
 
-```{stan, output.var="model1"}
-parameters {
-  real y[2];
-}
-model {
-  y[1] ~ normal(0, 1);
-  y[2] ~ double_exponential(0, 2);
-}
-```
+<!-- ```{stan, output.var="model1"} -->
+<!-- parameters { -->
+<!--   real y[2]; -->
+<!-- } -->
+<!-- model { -->
+<!--   y[1] ~ normal(0, 1); -->
+<!--   y[2] ~ double_exponential(0, 2); -->
+<!-- } -->
+<!-- ``` -->
 
-```{r, message=FALSE}
-fit <- sampling(model1, chains = 1)
-print(fit)
-```
+<!-- ```{r, message=FALSE} -->
+<!-- fit <- sampling(model1, chains = 1) -->
+<!-- print(fit) -->
+<!-- ``` -->

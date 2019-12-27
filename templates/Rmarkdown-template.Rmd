@@ -36,7 +36,7 @@ opts_chunk$set(fig.path='figures/',
                fig.height = 5,
                fig.width = 6,
                # engine.path = list(python = '/usr/local/bin/python3'),
-               python.reticulate = T, # set as T
+               # python.reticulate = T, # not necessary, if use_python() is used above
                message = F,
                warning = F,
                autodep=T,
