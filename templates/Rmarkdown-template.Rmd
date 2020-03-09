@@ -10,7 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
-output: 
+output:
   pdf_document:
    fig_crop: true
    fig_caption: true
@@ -91,6 +91,11 @@ timesTwo(10) # test function in R chunk or console
 
 Results
 ========
+
+<!-- Here is the
+multiple line comments
+-->
+
 
 
 Discussion
