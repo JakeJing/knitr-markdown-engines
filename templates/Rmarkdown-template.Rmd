@@ -68,7 +68,7 @@ options(width=180)
 Introduction
 ============
 
-```{r}
+```{r print, cache.path = "cache/", cache=T, cache.lazy=T}
 print("Hello R markdown!")
 ```
 

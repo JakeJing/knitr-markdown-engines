@@ -10,7 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
-output: 
+output:
   pdf_document:
    fig_crop: true
    fig_caption: true
@@ -25,6 +25,8 @@ output:
 library(knitr)
 library(ggplot2)
 library(Rcpp) # for running cpp code in R
+library(inline)
+library(RInside)
 library(rstan) # for running stan code in R
 library(reticulate) # for running python code in R
 use_python('/usr/local/bin/python3', required = T) #set the python engine path
@@ -50,6 +52,11 @@ theme_set(theme_bw(base_size = 24) +
             theme(text = element_text(family = my.font),
                   plot.background = element_rect(fill = "transparent", colour = NA)))
 
+load.cache <- function(path) {
+	files <- dir(path)
+	cache_files <- gsub(".rdb$", "", files[grepl(".rdb$", files)])
+	for (i in cache_files) try(lazyLoad(paste(path, i, sep = "/"), envir = .GlobalEnv))
+	}
 options(width=180)
 ```
 
@@ -106,7 +113,7 @@ print(x.split(' '))
 # source_python("flights.py")
 # py_install("pandas")
 
-# using py$x to inherit a python object 
+# using py$x to inherit a python object
 newvar = paste(py$x, "add R")
 print(newvar)
 ```
@@ -170,7 +177,7 @@ echo $FILE
 Stan code chunk
 ==========
 
-We can assign the stan code to a variable ($model1$), and can use this later in the `R` code chunk. 
+We can assign the stan code to a variable ($model1$), and can use this later in the `R` code chunk.
 
 <!-- ```{stan, output.var="model1"} -->
 <!-- parameters { -->
