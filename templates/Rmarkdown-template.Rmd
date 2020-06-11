@@ -28,13 +28,20 @@ library(knitr)
 library(ggplot2)
 library(dplyr)
 library(magrittr)
-
+library(tidyr) # gather
+library(tibble) # rowtocolumn
+library(kableExtra) # kable
 library(Rcpp)
 library(RcppArmadillo)
 library(inline) # masked from ‘package:Rcpp’ registerPlugin
 library(microbenchmark) # microbenchmark timings
 library(RcppParallel)
 library(RInside)
+library(data.table) # fread
+library(foreach) # foreach
+library(parallel) # mclapply
+library(doParallel)
+registerDoParallel(cores=6)
 
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
@@ -60,13 +67,15 @@ theme_set(theme_bw(base_size = 24) +
             theme(text = element_text(family = my.font),
                   plot.background = element_rect(fill = "transparent", colour = NA)))
 
-options(width=180)
+options(width=180, knitr.kable.NA = '', knitr.table.format = "latex")
 ```
 
 \clearpage
 
 Introduction
 ============
+
+For large files, we can cache the file, and use `cache.lazy = T` to reuse the pre-computed results.
 
 ```{r print, cache.path = "cache/", cache=T, cache.lazy=T}
 print("Hello R markdown!")
