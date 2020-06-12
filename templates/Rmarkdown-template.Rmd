@@ -75,9 +75,12 @@ options(width=180, knitr.kable.NA = '', knitr.table.format = "latex")
 Introduction
 ============
 
-For large files, we can cache the file, and use `cache.lazy = T` to reuse the pre-computed results.
+For large files, we can cache the file, and use `cache.lazy = T` to reuse the pre-computed results. To avoid overwriting the previously cached file, it is better to set the `cache= F`, when you want to use cachy.lazy to get the previously saved results. In this case, you do not need to cache the file again. You can also load the cached file, and check the environment to see whether the variables have already been saved.
 
-```{r print, cache.path = "cache/", cache=T, cache.lazy=T}
+If `cache = T`, knitr will skip the execution of this code chunk if it has been executed before and nothing in the code chunk has changed since then. This is particularly useful when you want to reuse the figure (time-consuming). **When you modify the code chunk (e.g., revise the code or the chunk options), the previous cache will be automatically invalidated, and knitr will cache the chunk again.**
+
+
+```{r print, cache.path = "cache/", cache=T}
 print("Hello R markdown!")
 ```
 
@@ -104,6 +107,12 @@ Results
 <!-- Here is the
 multiple line comments
 -->
+
+We can also save the plot as png files, by setting the dev = "png", and change the quality of the picture by setting dpi = 300. 
+
+```{r histogram, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot"}
+hist(rnorm(100))
+```
 
 
 
