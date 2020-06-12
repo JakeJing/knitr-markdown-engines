@@ -108,7 +108,11 @@ Results
 multiple line comments
 -->
 
-We can also save the plot as png files, by setting the dev = "png", and change the quality of the picture by setting dpi = 300. 
+We can also save the plot as png files, by setting the dev = "png", and change the quality of the picture by setting dpi = 300.
+
+Alternatively, you can convert all the saved pdfs into pngs with imagemagick in terminal:
+
+convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
 
 ```{r histogram, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot"}
 hist(rnorm(100))
