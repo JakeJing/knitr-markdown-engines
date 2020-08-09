@@ -26,6 +26,8 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 library(ggplot2)
+library(gridExtra)
+library(grid)
 library(dplyr)
 library(magrittr)
 library(tidyr) # gather
@@ -42,7 +44,7 @@ library(foreach) # foreach
 library(parallel) # mclapply
 library(doParallel)
 registerDoParallel(cores=6)
-
+library(rstan)
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
@@ -51,7 +53,7 @@ opts_chunk$set(fig.path='figures/',
                dev = 'cairo_pdf', dev.args=list(bg='transparent'), # or quartz_pdf (for lattice)
                fig.height = 5,
                fig.width = 6,
-               # engine.path = list(python = '/usr/local/bin/python3'),
+               # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.4.app/Contents/Resources/julia/bin'),
                # python.reticulate = T, # not necessary, if use_python() is used above
                message = F,
                warning = F,
@@ -128,8 +130,3 @@ Conclusions
 
 References
 ==========
-
-
-
-
-
