@@ -1,0 +1,116 @@
+---
+title: | 
+       | Rmarkdown template for slides
+       | 
+author: "Yingqi Jing"
+institute: "\\normalsize Department of Comparative Language Science"
+# titlegraphic: ./logo/uzh.pdf
+# logo: ./logo/uzh.pdf
+fontsize: 11pt
+date: "`r format(Sys.time(), '%B %e, %Y')`"
+output: 
+  beamer_presentation: # powerpoint_presentation
+    template: /Users/jakejing/git/knitr-markdown-engines/templates/svm-latex-beamer.tex
+    # theme: "gc3"
+    keep_tex: true
+    latex_engine: xelatex # pdflatex also works here
+    # dev: cairo_pdf # I typically comment this out  if latex_engine: pdflatex
+    # slide_level: 3 # it will create a separate page for each section
+    pandoc_args: ["--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
+header-includes:
+  - \usepackage{textpos}
+  - \addtobeamertemplate{title page}{}{\begin{textblock*}{40mm}(.01\textwidth,-7cm) \includegraphics[width=3.5cm, height=2.5cm]{/Users/jakejing/git/knitr-markdown-engines/logo/uzh.pdf} \end{textblock*}}
+  # - \addtobeamertemplate{title page}{\includegraphics[width=4cm, height=3cm]{./logo/uzh.pdf}\par}{}
+  # - \addtobeamertemplate{title page}{\centering \includegraphics{./logo/uzh.pdf}\par TEXT}{}
+#   - \titlegraphic{\centering \includegraphics{./logo/uzh.pdf}}
+#   - \pretitle{\begin{center}
+#     \includegraphics[width=2in,height=2in]{logo/uzh.pdf}\LARGE\\}
+#   - \posttitle{\end{center}}
+make149: true
+mainfont: "Times" # Try out some font options if xelatex
+titlefont: "Times" # Try out some font options if xelatex
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(kableExtra) # kable
+knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {if(before) {par(family=my.font)} else NULL})
+opts_chunk$set(fig.path='figures/',
+               dev = 'cairo_pdf', dev.args=list(bg='transparent'), # or quartz_pdf (for lattice)
+               fig.height = 5, fig.width = 6,
+               # engine.path = list(python = '/usr/local/bin/python3'),
+               # python.reticulate = T, # not necessary, if use_python() is used above
+               message = F,
+               warning = F,
+               autodep=T,
+               cache.comments=F,
+               crop=T,
+               comment=NA,
+               pars=T)
+# graphics setup:
+my.font = 'Helvetica'
+```
+
+
+# R Markdown
+
+You can include **Knit** markdown as *normal*^[A footnote].
+
+And there is a lot of variety about appearance and styles [@Osborne2006]. If you want to change how the presentation looks like, you can choose any of the next theme options: `default`, `simple`, `sky`, `beige`, `serif`, `solarized`, `blood`, `moon`, `night`, `black`, `league`, and `white`. And for the syntax highlighting style: `default`, `tango`, `pygments`, `kate`, `monochrome`, `espresso`, `zenburn`, and `haddock`. Pass null to prevent syntax highlighting. The way to specify it is the same than the previous presentation types.
+
+
+
+# Slide with Bullets
+
+\pause
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+# Slide with Numerical Bullets
+
+1. Bullet 1
+2. Bullet 2
+3. Bullet 3
+
+# Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+
+# Slide with Table
+
+```{r table}
+knitr::kable(summary(cars), row.names = FALSE)
+```
+
+
+# Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+# Two Columns
+
+:::::::::::::: {.columns}
+::: {.column}
+contents of the left column
+:::
+::: {.column}
+contents of the right column
+:::
+::::::::::::::
+
+
+# Slide with Equation
+
+$$
+\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+# Reference
