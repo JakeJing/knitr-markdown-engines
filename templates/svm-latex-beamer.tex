@@ -209,8 +209,8 @@ $endfor$
 % Do feel free to change the titlegraphic if you don't want it as a Markdown field.
 %----------------------------------------------------------------------------------
 $if(institute)$\institute{$institute$}$endif$
-
-% \titlegraphic{\includegraphics[width=0.3\paperwidth]{\string~/Dropbox/teaching/clemson-academic.png}} % <-- if you want to know what this looks like without it as a Markdown field. 
+$if(university)$\university{$university$}$endif$
+% \titlegraphic{\includegraphics[width=0.3\paperwidth]{\string~/Dropbox/teaching/clemson-academic.png}} % <-- if you want to know what this looks like without it as a Markdown field.
 % -----------------------------------------------------------------------------------------------------
 $if(titlegraphic)$\titlegraphic{\includegraphics[width=0.3\paperwidth]{\string~$titlegraphic$}}$endif$
 
@@ -257,7 +257,7 @@ $if(titlegraphic)$\titlegraphic{\includegraphics[width=0.3\paperwidth]{\string~$
 \setlength{\parskip}{0pt}
 
 
-% Allow for those simple two-tone footlines I like. 
+% Allow for those simple two-tone footlines I like.
 % Edit the colors as you see fit.
 %--------------------------------------------------
 \defbeamertemplate*{footline}{my footline}{%

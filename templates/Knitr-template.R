@@ -10,8 +10,7 @@
 #' - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
 #' - \usepackage{tocloft}
 #' - \settowidth{\cftsecnumwidth}{S10x}
-#' output:
-#'  pdf_document:
+#' output: pdf_document
 #'   fig_crop: true
 #'   fig_caption: true
 #'   latex_engine: xelatex
@@ -51,27 +50,27 @@ theme_set(theme_bw(base_size = 24) +
 options(width=180)
 
 #' \clearpage
-#' 
+#'
 #' Introduction
 #' =======
-#' 
+#'
 print("Hello R Knitr!")
-#' 
+#'
 #' Data and Methods
 #' ========
-#' 
-#' 
+#'
+#'
 #' Results
 #' ========
-#' 
-#' 
+#'
+#'
 #' Discussion
 #' =======
-#' 
-#' 
+#'
+#'
 #' Conclusions
 #' =======
-#' 
-#' 
+#'
+#'
 #' References
 #' ==========

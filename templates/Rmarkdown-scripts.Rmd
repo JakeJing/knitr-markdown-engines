@@ -10,8 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
-output:
-  pdf_document:
+output: pdf_document
    fig_crop: true
    fig_caption: true
    latex_engine: xelatex
