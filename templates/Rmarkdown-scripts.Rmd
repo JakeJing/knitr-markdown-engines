@@ -10,6 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
+  - \usepackage{makecell}
 output: 
   pdf_document:
    fig_crop: true
@@ -43,33 +44,43 @@ library(data.table) # fread
 library(foreach) # foreach
 library(parallel) # mclapply
 library(doParallel)
-registerDoParallel(cores=6)
+registerDoParallel(cores = 6)
 library(rstan)
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
-knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {if(before) {par(family=my.font)} else NULL})
-opts_chunk$set(fig.path='figures/',
-               dev = 'cairo_pdf', dev.args=list(bg='transparent'), # or quartz_pdf (for lattice)
-               fig.height = 5,
-               fig.width = 6,
-               # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.4.app/Contents/Resources/julia/bin'),
-               # python.reticulate = T, # not necessary, if use_python() is used above
-               message = F,
-               warning = F,
-               autodep=T,
-               cache.comments=F,
-               crop=T,
-               comment=NA,
-               pars=T)
+knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
+  if (before) {
+    par(family = my.font)
+  } else {
+    NULL
+  }
+})
+opts_chunk$set(
+  fig.path = "figures/",
+  dev = "cairo_pdf", dev.args = list(bg = "transparent"), # or quartz_pdf (for lattice)
+  fig.height = 5,
+  fig.width = 6,
+  # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.5.app/Contents/Resources/julia/bin'),
+  # python.reticulate = T, # not necessary, if use_python() is used above
+  message = F,
+  warning = F,
+  autodep = T,
+  cache.comments = F,
+  crop = T,
+  comment = NA,
+  pars = T
+)
 # graphics setup:
-my.font = 'Helvetica'
+my.font <- "Helvetica"
 # ggplot
 theme_set(theme_bw(base_size = 24) +
-            theme(text = element_text(family = my.font),
-                  plot.background = element_rect(fill = "transparent", colour = NA)))
+  theme(
+    text = element_text(family = my.font),
+    plot.background = element_rect(fill = "transparent", colour = NA)
+  ))
 
-options(width=180, knitr.kable.NA = '', knitr.table.format = "latex")
+options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
 ```
 
 \clearpage
@@ -120,7 +131,7 @@ convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[
 hist(rnorm(100))
 ```
 
-
+![example picture](../logo/uzh.png){width=90% height=80%}
 
 Discussion
 ==========
