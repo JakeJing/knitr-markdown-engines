@@ -138,14 +138,14 @@ hist(rnorm(100))
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
 
-```{r histgram example, echo=FALSE, fig.cap="Histogram plot", out.width = '100%', out.height="80%"}
+```{r histgram example, echo=FALSE, fig.cap="Histogram plot", out.width = '100%', out.height="80%", eval = F}
 knitr::include_graphics("./figures/histogram-1.png")
 ```
 
 Discussion
 ==========
 
-```{tikz, a simple tikz-ex, fig.cap = "Tikz graph example", fig.ext = 'png', eval = T, echo = F}
+```{tikz, simpletikz, fig.cap = "Tikz graph example", fig.ext = 'png', eval = T, echo = F}
 \usetikzlibrary{arrows}
 \begin{tikzpicture}[node distance=2cm, auto,>=latex', thick, scale = 0.5]
 \node (P) {$P$};
@@ -166,8 +166,12 @@ Discussion
 Conclusions
 ==========
 
-```{tikz, CTMC graphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex")}
+```{tikz, CTMCgraphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex"), echo = F}
 ```   
+
+```{tikz, simpletikz, fig.cap = "Tikz graph example (reuse by its labels; doesn't work for read_utf8)"}
+```
+
 
 References
 ==========
