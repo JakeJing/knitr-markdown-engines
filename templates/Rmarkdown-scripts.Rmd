@@ -142,7 +142,7 @@ Cross-reference of figures, tables and equations
 hist(rnorm(100))
 ```
 
-We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation.
+We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}. 
 
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
@@ -178,7 +178,10 @@ Conclusions
 ```{tikz, CTMCgraphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex"), echo = F}
 ```   
 
-```{tikz, simpletikz, fig.cap = "Tikz graph example (reuse by its labels; doesn't work for read_utf8)", echo = F}
+
+We can also add the cross-reference inside the figure cation via `\\ref{fig:}`. 
+
+```{tikz, simpletikz, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
 
 
