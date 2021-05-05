@@ -13,14 +13,15 @@ header-includes:
   - \usepackage{makecell}
   - \usepackage{tikz}
 output: 
-  pdf_document:
-   fig_crop: true
-   fig_caption: true
-   latex_engine: xelatex
-   toc: true
-   toc_depth: 4
-   number_section: true
-   pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
+   bookdown::pdf_document2:
+  # pdf_document:
+     fig_crop: true
+     fig_caption: true
+     latex_engine: xelatex
+     toc: true
+     toc_depth: 4
+     number_section: true
+     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
 ---
 
 ```{r setup, include=FALSE}
@@ -132,9 +133,17 @@ Alternatively, you can convert all the saved pdfs into pngs with imagemagick in 
 
 convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
 
-```{r histogram, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot", eval = F}
+
+
+Cross-reference of figures, tables and equations
+------------------------------------------------
+
+```{r histogram-rng, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot"}
 hist(rnorm(100))
 ```
+
+We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation.
+
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
 
@@ -169,7 +178,7 @@ Conclusions
 ```{tikz, CTMCgraphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex"), echo = F}
 ```   
 
-```{tikz, simpletikz, fig.cap = "Tikz graph example (reuse by its labels; doesn't work for read_utf8)"}
+```{tikz, simpletikz, fig.cap = "Tikz graph example (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
 
 
