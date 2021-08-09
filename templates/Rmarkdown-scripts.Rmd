@@ -10,6 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
+  - \usepackage{mathtools}
   - \usepackage{makecell}
   - \usepackage{tikz}
 output: 
@@ -52,6 +53,7 @@ registerDoParallel(cores = 6)
 library(rstan)
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
+library(purrr)
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
@@ -59,7 +61,7 @@ knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
   if (before) {
     par(family = my.font)
   } else {
-    NULL
+    NULL:
   }
 })
 opts_chunk$set(
@@ -174,6 +176,8 @@ Discussion
 
 Conclusions
 ==========
+
+**Note:** it seems that tikz does not support both fig.cap and fig.scap at the same time. It may cause fig.cap cannot recognize the latex code. 
 
 ```{tikz, CTMCgraphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex"), echo = F}
 ```   
