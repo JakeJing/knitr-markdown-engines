@@ -28,8 +28,8 @@ output:
 ```{r setup, include=FALSE}
 # params:
 #   i: "`r i`"
-   # includes:
-   #   in_header: "preamble.tex"
+# includes:
+#   in_header: "preamble.tex"
 library(knitr)
 library(ggplot2)
 library(gridExtra)
@@ -61,7 +61,7 @@ knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
   if (before) {
     par(family = my.font)
   } else {
-    NULL:
+    NULL
   }
 })
 opts_chunk$set(
