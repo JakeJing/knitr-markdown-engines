@@ -3,7 +3,7 @@ title: |
        | Rmarkdown template for slides
        | 
 author: "Yingqi Jing"
-institute: "\\normalsize Department of Comparative Language Science"
+institute: "\\normalsize Department of Linguistics and Philology"
 # titlegraphic: ./logo/uzh.pdf
 # logo: ./logo/uzh.pdf
 fontsize: 11pt
@@ -19,7 +19,7 @@ output:
     pandoc_args: ["--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
 header-includes:
   - \usepackage{textpos}
-  - \addtobeamertemplate{title page}{}{\begin{textblock*}{40mm}(.01\textwidth,-7cm) \includegraphics[width=3.5cm, height=2.5cm]{/Users/jakejing/git/knitr-markdown-engines/logo/uzh.pdf} \end{textblock*}}
+  - \addtobeamertemplate{title page}{}{\begin{textblock*}{10mm}(.01\textwidth,-7.1cm) \includegraphics[width=3.5cm, height=2.5cm]{/Users/jakejing/git/knitr-markdown-engines/logo/UU.eps} \end{textblock*}}
   # - \addtobeamertemplate{title page}{\includegraphics[width=4cm, height=3cm]{./logo/uzh.pdf}\par}{}
   # - \addtobeamertemplate{title page}{\centering \includegraphics{./logo/uzh.pdf}\par TEXT}{}
 #   - \titlegraphic{\centering \includegraphics{./logo/uzh.pdf}}
@@ -112,5 +112,30 @@ contents of the right column
 $$
 \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
+
+# Slide incremental
+
+:::incremental
+- some stuff
+    - item 1
+    - very complicated and deeply involved issues that need terribly long text that no one will read in the end
+    - item 2
+
+- more stuff
+
+- and even more!
+:::
+
+
+# More slides (pause)
+
+- Librarian
+\pause
+- Collaboration 
+\pause
+- 2 major collections
+\pause
+- Locations
+
 
 # Reference

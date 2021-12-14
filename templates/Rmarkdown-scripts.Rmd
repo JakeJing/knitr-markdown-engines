@@ -10,10 +10,10 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
-  - \usepackage{mathtools}
+#  - \usepackage{mathtools}
   - \usepackage{makecell}
-  - \usepackage{tikz}
-output: 
+#  - \usepackage{tikz}
+output:
    bookdown::pdf_document2:
   # pdf_document:
      fig_crop: true
@@ -144,7 +144,7 @@ Cross-reference of figures, tables and equations
 hist(rnorm(100))
 ```
 
-We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}. 
+We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
 
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
@@ -177,13 +177,13 @@ Discussion
 Conclusions
 ==========
 
-**Note:** it seems that tikz does not support both fig.cap and fig.scap at the same time. It may cause fig.cap cannot recognize the latex code. 
+**Note:** it seems that tikz does not support both fig.cap and fig.scap at the same time. It may cause fig.cap cannot recognize the latex code.
 
 ```{tikz, CTMCgraphs, fig.cap="A example graphs of CTMC model (fig.size cannot be changed via fig.width or fig.height)", fig.align="center", code = xfun::read_utf8("./graphics/CTMC.tex"), echo = F}
-```   
+```
 
 
-We can also add the cross-reference inside the figure cation via `\\ref{fig:}`. 
+We can also add the cross-reference inside the figure cation via `\\ref{fig:}`.
 
 ```{tikz, simpletikz, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
