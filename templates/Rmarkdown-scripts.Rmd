@@ -19,10 +19,13 @@ output:
      fig_crop: true
      fig_caption: true
      latex_engine: xelatex
+     keep_tex: true
+     citation_package: biblatex # important: will use autocite in latex
      toc: true
      toc_depth: 4
      number_section: true
-     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
+     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl", "--template=latextemplates/simple_format_new.tex"]
+link-citations: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -140,7 +143,7 @@ convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[
 Cross-reference of figures, tables and equations
 ------------------------------------------------
 
-```{r histogram-rng, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot"}
+```{r histogram-rng, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot", include = F, echo = F}
 hist(rnorm(100))
 ```
 
@@ -149,14 +152,14 @@ We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using 
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
 
-```{r histgram example, echo=FALSE, fig.cap="Histogram plot", out.width = '100%', out.height="80%", eval = F}
-knitr::include_graphics("./figures/histogram-1.png")
+```{r fig.cap="Histogram plot from \\textcite{Rcore2020}", out.width = '100%', out.height="80%", echo = F, eval = T}
+knitr::include_graphics("./figures/histogram-rng-1.png")
 ```
 
 Discussion
 ==========
 
-```{tikz, simpletikz, fig.cap = "Tikz graph example", fig.ext = 'png', eval = T, echo = F}
+```{tikz, simpletikz, fig.cap = "Tikz graph example", fig.ext = 'pdf', eval = T, echo = F}
 \usetikzlibrary{arrows}
 \begin{tikzpicture}[node distance=2cm, auto,>=latex', thick, scale = 0.5]
 \node (P) {$P$};
