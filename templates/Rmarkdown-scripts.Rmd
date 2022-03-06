@@ -10,6 +10,7 @@ header-includes:
   - \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
   - \usepackage{tocloft}
   - \settowidth{\cftsecnumwidth}{S10x}
+  - \usepackage{booktabs}
 #  - \usepackage{mathtools}
   - \usepackage{makecell}
 #  - \usepackage{tikz}
