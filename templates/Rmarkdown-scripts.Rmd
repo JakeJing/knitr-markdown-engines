@@ -66,6 +66,7 @@ conflict_prefer("mutate", "dplyr")
 conflict_prefer("summarise", "dplyr")
 conflict_prefer("map", "purrr")
 conflict_prefer("map_dfr", "purrr")
+conflict_prefer("lag", "dplyr")
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
@@ -147,7 +148,10 @@ Alternatively, you can convert all the saved pdfs into pngs with imagemagick in 
 
 convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
 
-
+```{r compile stan model}
+md_binom <- stan_model("./stanscripts/stan_binom.stan")
+fit <- sampling(md_binom, data = data_binom)
+```
 
 Cross-reference of figures, tables and equations
 ------------------------------------------------
