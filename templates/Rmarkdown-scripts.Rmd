@@ -14,8 +14,12 @@ header-includes:
 #  - \usepackage{mathtools}
   - \usepackage{makecell}
 #  - \usepackage{tikz}
+  - \usepackage{fancyvrb}
+  - \usepackage{color}
 output:
    bookdown::pdf_document2:
+     includes:
+       in_header: latextemplates/stanhl.tex
   # pdf_document:
      fig_crop: true
      fig_caption: true
@@ -55,6 +59,10 @@ library(parallel) # mclapply
 library(doParallel)
 registerDoParallel(cores = 6)
 library(rstan)
+# library(devtools)
+# install_github('JakeJing/stanhl')
+# Note: this only works for python3; need to first install `pip3 install Pygments`; and `xcode-select --install`
+library(stanhl)
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
 library(purrr)
@@ -67,6 +75,20 @@ conflict_prefer("summarise", "dplyr")
 conflict_prefer("map", "purrr")
 conflict_prefer("map_dfr", "purrr")
 conflict_prefer("lag", "dplyr")
+conflict_prefer("extract", "rstan")
+conflict_prefer("accumulate", "purrr")
+conflict_prefer("between", "dplyr")
+conflict_prefer("combine", "dplyr")
+conflict_prefer("expand", "tidyr")
+conflict_prefer("first", "dplyr")
+conflict_prefer("last", "dplyr")
+conflict_prefer("group_rows", "dplyr")
+conflict_prefer("LdFlags", "Rcpp")
+conflict_prefer("pack", "Matrix")
+conflict_prefer("unpack", "Matrix")
+conflict_prefer("registerPlugin", "Rcpp")
+conflict_prefer("transpose", "purrr")
+conflict_prefer("when", "purrr")
 # library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
@@ -79,7 +101,9 @@ knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
 })
 opts_chunk$set(
   fig.path = "figures/",
-  dev = "cairo_pdf", dev.args = list(bg = "white"), # or quartz_pdf (for lattice)
+  dev = "cairo_pdf",
+  # dev = "png",
+  dev.args = list(bg = "white"), # or quartz_pdf (for lattice)
   fig.height = 5,
   fig.width = 6,
   # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.5.app/Contents/Resources/julia/bin'),
@@ -119,6 +143,7 @@ print("Hello R markdown!")
 ```
 
 
+
 Data and Methods
 ============
 
@@ -148,19 +173,46 @@ Alternatively, you can convert all the saved pdfs into pngs with imagemagick in 
 
 convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
 
-```{r compile stan model}
+```{r compile stan model, results='asis', echo=F, eval = F}
+# it works in vscode as well (though slowly)
 md_binom <- stan_model("./stanscripts/stan_binom.stan")
-fit <- sampling(md_binom, data = data_binom)
+stanhl(md_binom@model_code[1])
+# fit <- sampling(md_binom, data = data_binom)
 ```
+
+
+```{r results='asis', echo=F, eval = T}
+stan_binom <- "
+data{
+int N; // number of observations
+int H; // number of observed head
+}
+parameters{
+real<lower=0, upper=1> p; // parameter for binomial distribution
+}
+model{
+// you can also specify the prior here.
+// If you leave it empty, it will use a flat or uniform prior
+p ~ uniform(0, 1);
+H ~ binomial(N, p); // likelihood func
+}
+"
+# it is faster if you don't need to compile the model
+stanhl(stan_binom)
+# invisible(gsub("@","\\@",stanhl(stan_binom)))
+```
+
+
 
 Cross-reference of figures, tables and equations
 ------------------------------------------------
 
-```{r histogram-rng, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot", include = F, echo = F}
+
+```{r histogram-rng, dev = "png", dpi = 300, fig.width=5, fig.height=4, fig.cap="Histogram plot", echo = F}
 hist(rnorm(100))
 ```
 
-We can also co-refer a plot in Figure \@ref(fig:histogram-rng). Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
+We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you need to set `include = T` when producing the plot. Otherwise, the co-reference won't work. Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
 
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->

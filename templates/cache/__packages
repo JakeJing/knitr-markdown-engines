@@ -1,14 +1,6 @@
-base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 knitr
 ggplot2
 gridExtra
-grid
 dplyr
 magrittr
 tidyr
@@ -22,7 +14,6 @@ RcppParallel
 RInside
 data.table
 foreach
-parallel
 iterators
 doParallel
 StanHeaders
@@ -30,3 +21,5 @@ rstan
 pdftools
 tikzDevice
 purrr
+conflicted
+stanhl
