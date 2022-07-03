@@ -15,7 +15,10 @@ header-includes:
   - \usepackage{makecell}
 #  - \usepackage{tikz}
   - \usepackage{fancyvrb}
+  - \usepackage{framed}
+  - \usepackage{etoolbox}
   - \usepackage{color}
+  - \usepackage{xcolor}
 output:
    bookdown::pdf_document2:
      includes:
@@ -29,7 +32,7 @@ output:
      toc: true
      toc_depth: 4
      number_section: true
-     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl", "--template=latextemplates/simple_format_new.tex"]
+     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib","--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl","--template=latextemplates/simple_format_new.tex"]
 link-citations: TRUE
 ---
 
@@ -59,7 +62,8 @@ library(parallel) # mclapply
 library(doParallel)
 registerDoParallel(cores = 6)
 library(rstan)
-# library(devtools)
+library(devtools)
+# install_github('jr-packages/stanhl')
 # install_github('JakeJing/stanhl')
 # Note: this only works for python3; need to first install `pip3 install Pygments`; and `xcode-select --install`
 library(stanhl)
@@ -160,28 +164,24 @@ NumericVector timesTwo(NumericVector x) {
 timesTwo(10) # test function in R chunk or console
 ```
 
-Results
-========
 
-<!-- Here is the
-multiple line comments
--->
-
-We can also save the plot as png files, by setting the dev = "png", and change the quality of the picture by setting dpi = 300.
-
-Alternatively, you can convert all the saved pdfs into pngs with imagemagick in terminal:
-
-convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
+Color stan chunk
+---------------
 
 ```{r compile stan model, results='asis', echo=F, eval = F}
-# it works in vscode as well (though slowly)
+# it works in vscode as well (though slowly due to stan compilation)
 md_binom <- stan_model("./stanscripts/stan_binom.stan")
 stanhl(md_binom@model_code[1])
 # fit <- sampling(md_binom, data = data_binom)
 ```
 
+```{r results='asis', echo = F, eval = T}
+# results='asis' is important, so that it can be kept in the latex
+# Note: this won't compile the stan code
+stanhl_file("./stanscripts/stan_binom.stan")
+```
 
-```{r results='asis', echo=F, eval = T}
+```{r results='asis', echo=F, eval = F}
 stan_binom <- "
 data{
 int N; // number of observations
@@ -197,10 +197,25 @@ p ~ uniform(0, 1);
 H ~ binomial(N, p); // likelihood func
 }
 "
-# it is faster if you don't need to compile the model
+# won't compile the stan code
 stanhl(stan_binom)
 # invisible(gsub("@","\\@",stanhl(stan_binom)))
 ```
+
+
+
+Results
+========
+
+<!-- Here is the
+multiple line comments
+-->
+
+We can also save the plot as png files, by setting the dev = "png", and change the quality of the picture by setting dpi = 300.
+
+Alternatively, you can convert all the saved pdfs into pngs with imagemagick in terminal:
+
+convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[filename:basename].png"
 
 
 

@@ -217,7 +217,10 @@
 \usepackage{booktabs}
 \usepackage{makecell}
 \usepackage{fancyvrb}
+\usepackage{framed}
+\usepackage{etoolbox}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -289,7 +292,7 @@
 
 }
 
-{\large June 29, 2022}
+{\large July 3, 2022}
 \end{center}
 \vspace{6pt}
 
@@ -340,15 +343,10 @@ If \texttt{cache\ =\ T}, knitr~will skip the execution of this code chunk if it 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{color-stan-chunk}{%
+\subsection{Color stan chunk}\label{color-stan-chunk}}
 
-We can also save the plot as png files, by setting the dev = ``png'', and change the quality of the picture by setting dpi = 300.
-
-Alternatively, you can convert all the saved pdfs into pngs with imagemagick in terminal:
-
-convert -density 150 *.pdf -quality 100 -set filename:basename ``\%{[}basename{]}'' ``\%{[}filename:basename{]}.png''
-
+\begin{Shaded}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{data}\PY{p}{\PYZob{}}
 \PY{k+kt}{int} \PY{n}{N}\PY{p}{;} \PY{c+c1}{// number of observations}
@@ -364,17 +362,19 @@ convert -density 150 *.pdf -quality 100 -set filename:basename ``\%{[}basename{]
 \PY{n}{H} \PY{o}{\PYZti{}}\PY{+w}{ }\PY{n+nb}{binomial}\PY{p}{(}\PY{n}{N}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// likelihood func}
 \PY{p}{\PYZcb{}}
 \end{Verbatim}
+\end{Shaded}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+We can also save the plot as png files, by setting the dev = ``png'', and change the quality of the picture by setting dpi = 300.
+
+Alternatively, you can convert all the saved pdfs into pngs with imagemagick in terminal:
+
+convert -density 150 *.pdf -quality 100 -set filename:basename ``\%{[}basename{]}'' ``\%{[}filename:basename{]}.png''
 
 \hypertarget{cross-reference-of-figures-tables-and-equations}{%
 \subsection{Cross-reference of figures, tables and equations}\label{cross-reference-of-figures-tables-and-equations}}
-
-\begin{figure}
-\centering
-\includegraphics{figures/cars-plot-1.pdf}
-\caption{\label{fig:cars-plot}The cars data.}
-\end{figure}
-
-See Figure \ref{fig:cars-plot}.
 
 \begin{figure}
 \centering
@@ -382,7 +382,7 @@ See Figure \ref{fig:cars-plot}.
 \caption{\label{fig:histogram-rng}Histogram plot}
 \end{figure}
 
-We can also co-refer a plot in Figure \ref{fig:histogram-rng}. Pls avoid using underscore (\texttt{\_}) or white space in the co-reference labels. Likewise, you can also use \texttt{\textbackslash{}@ref(tab/eq:)} to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
+We can also co-refer a plot in Figure \ref{fig:histogram-rng}. \textbf{Note:} you need to set \texttt{include\ =\ T} when producing the plot. Otherwise, the co-reference won't work. Pls avoid using underscore (\texttt{\_}) or white space in the co-reference labels. Likewise, you can also use \texttt{\textbackslash{}@ref(tab/eq:)} to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
 
 \begin{figure}
 
@@ -390,7 +390,7 @@ We can also co-refer a plot in Figure \ref{fig:histogram-rng}. Pls avoid using u
 
 }
 
-\caption{Histogram plot from \textcite{Rcore2020}}\label{fig:unnamed-chunk-4}
+\caption{Histogram plot from \textcite{Rcore2020}}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \hypertarget{discussion}{%
