@@ -9,4 +9,3 @@
 2. It seems that **Knitr** does not support inline running with other languages, such as C++ or Python, you need to compile the whole file.
 3. The *Stan* code in rmarkdown is not colored, probably due to the output.var.
 
-

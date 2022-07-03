@@ -14,11 +14,11 @@ header-includes:
 #  - \usepackage{mathtools}
   - \usepackage{makecell}
 #  - \usepackage{tikz}
-  - \usepackage{fancyvrb}
-  - \usepackage{framed}
-  - \usepackage{etoolbox}
-  - \usepackage{color}
-  - \usepackage{xcolor}
+  # - \usepackage{fancyvrb}
+  # - \usepackage{framed}
+  # - \usepackage{etoolbox}
+  # - \usepackage{color}
+  # - \usepackage{xcolor}
 output:
    bookdown::pdf_document2:
      includes:
@@ -165,44 +165,9 @@ timesTwo(10) # test function in R chunk or console
 ```
 
 
-Color stan chunk
----------------
-
-```{r compile stan model, results='asis', echo=F, eval = F}
-# it works in vscode as well (though slowly due to stan compilation)
-md_binom <- stan_model("./stanscripts/stan_binom.stan")
-stanhl(md_binom@model_code[1])
-# fit <- sampling(md_binom, data = data_binom)
-```
-
-```{r results='asis', echo = F, eval = T}
-# results='asis' is important, so that it can be kept in the latex
-# Note: this won't compile the stan code
+```{r results='asis', echo = F}
 stanhl_file("./stanscripts/stan_binom.stan")
 ```
-
-```{r results='asis', echo=F, eval = F}
-stan_binom <- "
-data{
-int N; // number of observations
-int H; // number of observed head
-}
-parameters{
-real<lower=0, upper=1> p; // parameter for binomial distribution
-}
-model{
-// you can also specify the prior here.
-// If you leave it empty, it will use a flat or uniform prior
-p ~ uniform(0, 1);
-H ~ binomial(N, p); // likelihood func
-}
-"
-# won't compile the stan code
-stanhl(stan_binom)
-# invisible(gsub("@","\\@",stanhl(stan_binom)))
-```
-
-
 
 Results
 ========
@@ -232,7 +197,9 @@ We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you ne
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
 
-```{r fig.cap="Histogram plot from \\textcite{Rcore2020}", out.width = '100%', out.height="80%", fig.align="center", echo = F, eval = T}
+```{r fig.cap="Histogram plot from \\textcite{Rcore2020}", out.width = '100%', out.height="80%", fig.align="center", echo = T, eval = F}
+# two ways of include a picture in R
+![example picture](./figures/histogram-1.png){width=90% height=80%}
 knitr::include_graphics("./figures/histogram-rng-1.png")
 ```
 
@@ -271,6 +238,8 @@ We can also add the cross-reference inside the figure cation via `\\ref{fig:}`.
 ```{tikz, simpletikz, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
 
+
+\clearpage 
 
 References
 ==========

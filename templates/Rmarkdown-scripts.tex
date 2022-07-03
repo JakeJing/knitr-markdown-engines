@@ -108,6 +108,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+
 \makeatletter
 \def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
     \let\PY@ul=\relax \let\PY@tc=\relax%
@@ -216,11 +217,6 @@
 \settowidth{\cftsecnumwidth}{S10x}
 \usepackage{booktabs}
 \usepackage{makecell}
-\usepackage{fancyvrb}
-\usepackage{framed}
-\usepackage{etoolbox}
-\usepackage{color}
-\usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -292,7 +288,7 @@
 
 }
 
-{\large July 3, 2022}
+{\large July 4, 2022}
 \end{center}
 \vspace{6pt}
 
@@ -343,9 +339,6 @@ If \texttt{cache\ =\ T}, knitr~will skip the execution of this code chunk if it 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{color-stan-chunk}{%
-\subsection{Color stan chunk}\label{color-stan-chunk}}
-
 \begin{Shaded}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{data}\PY{p}{\PYZob{}}
@@ -384,14 +377,13 @@ convert -density 150 *.pdf -quality 100 -set filename:basename ``\%{[}basename{]
 
 We can also co-refer a plot in Figure \ref{fig:histogram-rng}. \textbf{Note:} you need to set \texttt{include\ =\ T} when producing the plot. Otherwise, the co-reference won't work. Pls avoid using underscore (\texttt{\_}) or white space in the co-reference labels. Likewise, you can also use \texttt{\textbackslash{}@ref(tab/eq:)} to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth,height=0.8\textheight]{./figures/histogram-rng-1} 
-
-}
-
-\caption{Histogram plot from \textcite{Rcore2020}}\label{fig:unnamed-chunk-5}
-\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# two ways of include a picture in R}
+\OperatorTok{!}\NormalTok{[example picture](.}\OperatorTok{/}\NormalTok{figures}\OperatorTok{/}\NormalTok{histogram}\FloatTok{-1.}\NormalTok{png)\{width=}\DecValTok{90}\OperatorTok{% height=80%}\NormalTok{\}}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"./figures/histogram-rng-1.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -423,6 +415,8 @@ We can also add the cross-reference inside the figure cation via \texttt{\textba
 \includegraphics{figures/simpletikz-1.pdf}
 \caption{\label{fig:simpletikz}A copy of CTMC model in Figure \ref{fig:histogram-rng} or Figure \ref{fig:histogram-rng} (reuse by its labels; doesn't work for read\_utf8)}
 \end{figure}
+
+\clearpage
 
 \printbibliography[title=References]
 

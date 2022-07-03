@@ -18,7 +18,7 @@ output:
    toc: true
    toc_depth: 4
    number_section: true
-   pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
+   pandoc_args: ["--citeproc", "--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib", "--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"]
 ---
 
 ```{r setup, include=FALSE}
