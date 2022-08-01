@@ -54,5 +54,3 @@ stanhl = function(x) {
                 stdout = TRUE),
         collapse = "\n")
 }
-# You need to run it before the stan code chunk
-stanhl_init()
