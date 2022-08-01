@@ -1,25 +1,3 @@
----
-title: "Color the stan code chunk directly in Rmd"
-author: "Yingqi Jing"
-date: "`r Sys.Date()`"
-output:
-  pdf_document:
-    # extra_dependencies: ["fancyvrb", "framed", "etoolbox", "xcolor"]
----
-
-```{r}
-library(devtools)
-# install_github('jr-packages/stanhl')
-# Note: this is only for python3; need to first install `pip3 install Pygments`; 
-# and `xcode-select --install`
-library(stanhl)
-```
-
-This piece of code if from the souce code of `install_github('jr-packages/stanhl')`, and I simply extract the necessary funcs. You do not need to install the repository, but directly make use of the funcs inside Rstudio. 
-
-You can also put the following piece in a R script and source it at the beginning of your Rmd script. This will create a **highlight.tex** file in the current working directory. With this, you are able to color your stan code.
-
-```{r echo = F, results='asis', eval = T}
 has_pygments = function() {
   exit_status = system2("pygmentize", "-V", stdout = FALSE)
   if (exit_status != 0)
@@ -78,23 +56,3 @@ stanhl = function(x) {
 }
 # You need to run it before the stan code chunk
 stanhl_init()
-```
-
-
-# Stan model highlighted using `stanhl`
-
-```{stan, output.var = "binom", eval = F}
-data{
-int N; // number of observations
-int H; // number of observed head
-}
-parameters{
-real<lower=0, upper=1> p; // parameter for binomial distribution
-}
-model{
-// you can also specify the prior here.
-// If you leave it empty, it will use a flat or uniform prior
-p ~ uniform(0, 1);
-H ~ binomial(N, p); // likelihood func
-}
-```
