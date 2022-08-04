@@ -288,7 +288,7 @@
 
 }
 
-{\large July 4, 2022}
+{\large August 4, 2022}
 \end{center}
 \vspace{6pt}
 
@@ -309,9 +309,11 @@ For large files, we can cache the file, and use \texttt{cache.lazy\ =\ T} to reu
 
 If \texttt{cache\ =\ T}, knitr~will skip the execution of this code chunk if it has been executed before and nothing in the code chunk has changed since then. This is particularly useful when you want to reuse the figure (time-consuming). \textbf{When you modify the code chunk (e.g., revise the code or the chunk options), the previous cache will be automatically invalidated, and knitr will cache the chunk again.}
 
+You can also use cross-reference for a section \ref{sec:data-method}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(}\StringTok{"Hello R markdown!"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Hello R markdown!"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -319,23 +321,23 @@ If \texttt{cache\ =\ T}, knitr~will skip the execution of this code chunk if it 
 [1] "Hello R markdown!"
 \end{verbatim}
 
-\hypertarget{data-and-methods}{%
-\section{Data and Methods}\label{data-and-methods}}
+\hypertarget{sec:data-method}{%
+\section{Data and Methods}\label{sec:data-method}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\PreprocessorTok{#include }\ImportTok{<Rcpp.h>}
-\KeywordTok{using} \KeywordTok{namespace}\NormalTok{ Rcpp;}
+\PreprocessorTok{\#include }\ImportTok{\textless{}Rcpp.h\textgreater{}}
+\KeywordTok{using} \KeywordTok{namespace}\NormalTok{ Rcpp}\OperatorTok{;}
 \CommentTok{// [[Rcpp::export]]}
-\NormalTok{NumericVector timesTwo(NumericVector x) \{}
-  \ControlFlowTok{return}\NormalTok{ x * }\DecValTok{2}\NormalTok{;}
-\NormalTok{\}}
+\NormalTok{NumericVector timesTwo}\OperatorTok{(}\NormalTok{NumericVector x}\OperatorTok{)} \OperatorTok{\{}
+  \ControlFlowTok{return}\NormalTok{ x }\OperatorTok{*} \DecValTok{2}\OperatorTok{;}
+\OperatorTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{timesTwo}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{# test function in R chunk or console}
+\FunctionTok{timesTwo}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{\# test function in R chunk or console}
 \end{Highlighting}
 \end{Shaded}
 
@@ -379,9 +381,9 @@ We can also co-refer a plot in Figure \ref{fig:histogram-rng}. \textbf{Note:} yo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# two ways of include a picture in R}
-\OperatorTok{!}\NormalTok{[example picture](.}\OperatorTok{/}\NormalTok{figures}\OperatorTok{/}\NormalTok{histogram}\FloatTok{-1.}\NormalTok{png)\{width=}\DecValTok{90}\OperatorTok{% height=80%}\NormalTok{\}}
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"./figures/histogram-rng-1.png"}\NormalTok{)}
+\CommentTok{\# two ways of include a picture in R}
+\SpecialCharTok{!}\NormalTok{[example picture](.}\SpecialCharTok{/}\NormalTok{figures}\SpecialCharTok{/}\NormalTok{histogram}\FloatTok{{-}1.}\NormalTok{png)\{width}\OtherTok{=}\DecValTok{90}\SpecialCharTok{\% height=80\%}\NormalTok{\}}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"./figures/histogram{-}rng{-}1.png"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

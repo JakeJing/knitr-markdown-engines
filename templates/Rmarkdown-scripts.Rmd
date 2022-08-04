@@ -141,6 +141,8 @@ For large files, we can cache the file, and use `cache.lazy = T` to reuse the pr
 
 If `cache = T`, knitr will skip the execution of this code chunk if it has been executed before and nothing in the code chunk has changed since then. This is particularly useful when you want to reuse the figure (time-consuming). **When you modify the code chunk (e.g., revise the code or the chunk options), the previous cache will be automatically invalidated, and knitr will cache the chunk again.**
 
+You can also use cross-reference for a section \@ref(sec:data-method). 
+
 
 ```{r print, cache.path = "cache/", cache=T}
 print("Hello R markdown!")
@@ -148,7 +150,7 @@ print("Hello R markdown!")
 
 
 
-Data and Methods
+Data and Methods {#sec:data-method}
 ============
 
 ```{Rcpp, eval = F}
@@ -237,6 +239,7 @@ We can also add the cross-reference inside the figure cation via `\\ref{fig:}`.
 
 ```{tikz, simpletikz, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
+
 
 
 \clearpage 
