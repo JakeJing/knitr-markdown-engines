@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.11.10)  4 AUG 2022 11:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.11.10)  27 AUG 2022 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1301,7 +1301,7 @@ Package caption Info: End \AtBeginDocument code.
 
 ]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 330.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 332.
 File: figures/histogram-rng-1.png Graphic file (type bmp)
 <figures/histogram-rng-1.png>
 [2
@@ -1314,10 +1314,45 @@ File: figures/CTMCgraphs-1.pdf Graphic file (type pdf)
 File: figures/simpletikz-1.pdf Graphic file (type pdf)
 <use figures/simpletikz-1.pdf>
 [4] [5]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 425.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
+25.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 425.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 425.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 425
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 425
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-eur.cfg
+File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
+) [6
 
-LaTeX Warning: Empty bibliography on input line 423.
-
-(./Rmarkdown-scripts.aux)
+] (./Rmarkdown-scripts.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1326,12 +1361,12 @@ Package logreq Info: Writing requests to 'Rmarkdown-scripts.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29780 strings out of 476919
- 537400 string characters out of 5821839
- 1473492 words of memory out of 5000000
- 49348 multiletter control sequences out of 15000+600000
- 404476 words of font info for 46 fonts, out of 8000000 for 9000
+ 30110 strings out of 476919
+ 544671 string characters out of 5821839
+ 1473580 words of memory out of 5000000
+ 49628 multiletter control sequences out of 15000+600000
+ 408178 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,6n,130p,750b,803s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,6n,130p,750b,5248s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Rmarkdown-scripts.pdf (5 pages).
+Output written on Rmarkdown-scripts.pdf (6 pages).
