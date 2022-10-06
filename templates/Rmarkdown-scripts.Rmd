@@ -13,12 +13,12 @@ header-includes:
   - \usepackage{booktabs}
   - \usepackage{makecell}
   # citation settings below (see paper3 or poster for more advanced settings)
-  # - \usepackage{xpatch} 
+  # - \usepackage{xpatch}
   # - \usepackage[style=authoryear-comp, backend=biber, dashed=false, sorting = none, maxcitenames=3,uniquelist=false, uniquename=false, maxbibnames=99]{biblatex}
   # - \renewbibmacro{in:}{}
   # - \DeclareFieldFormat[article, inbook,incollection,inproceedings]{title}{#1}
   # - \DeclareFieldFormat[thesis]{title}{\mkbibitalic{#1}}
-  # - \DeclareFieldFormat[article, inbook,incollection,inproceedings]{pages}{#1} 
+  # - \DeclareFieldFormat[article, inbook,incollection,inproceedings]{pages}{#1}
   #  - \usepackage{mathtools}
   #  - \usepackage{tikz}
   # - \usepackage{fancyvrb}
@@ -27,10 +27,10 @@ header-includes:
   # - \usepackage{color}
   # - \usepackage{xcolor}
 output:
-   bookdown::pdf_document2:
-     includes:
-       in_header: latextemplates/stanhl.tex
-  # pdf_document:
+   #bookdown::pdf_document2:
+   #  includes:
+   #    in_header: latextemplates/stanhl.tex
+   pdf_document: # useful when picture name cannot be rendered
      fig_crop: true
      fig_caption: true
      latex_engine: xelatex
@@ -137,6 +137,8 @@ theme_set(theme_bw(base_size = 24) +
     plot.background = element_rect(fill = "transparent", colour = NA)
   ))
 options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
+# citations_1 <- tempfile(fileext = ".bib")
+# file.copy(from = here::here("/Users/jakejing/switchdrive/bib/references.bib"), to = citations_1)
 ```
 
 
@@ -210,7 +212,7 @@ We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you ne
 
 ```{r fig.cap="Histogram plot from \\textcite{Rcore2020}", out.width = '100%', out.height="80%", fig.align="center", echo = T, eval = F}
 # two ways of include a picture in R
-![example picture](./figures/histogram-1.png){width=90% height=80%}
+# ![example picture](./figures/histogram-1.png){width=90% height=80%}
 knitr::include_graphics("./figures/histogram-rng-1.png")
 ```
 
