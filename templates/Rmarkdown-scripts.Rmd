@@ -180,6 +180,7 @@ timesTwo(10) # test function in R chunk or console
 
 ```{r results='asis', echo = F}
 stanhl_file("./stanscripts/stan_binom.stan")
+# mod <- stan_model(file="./stanscripts/stan_binom.stan", verbose = TRUE)
 ```
 
 Results
@@ -215,6 +216,14 @@ We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you ne
 # ![example picture](./figures/histogram-1.png){width=90% height=80%}
 knitr::include_graphics("./figures/histogram-rng-1.png")
 ```
+
+Citations
+-----------
+
+
+You can cite a paper in Rmarkdown in different ways, e.g., if you want to have the citation with exact page number. You can use the following ways [see @Jing2022, p.45] or @Jing2022 [pp. 404].
+
+
 
 Discussion
 ==========
