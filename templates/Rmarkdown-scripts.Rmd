@@ -14,7 +14,7 @@ header-includes:
   - \usepackage{makecell}
   # citation settings below (see paper3 or poster for more advanced settings)
   # - \usepackage{xpatch}
-  # - \usepackage[style=authoryear-comp, backend=biber, dashed=false, sorting = none, maxcitenames=3,uniquelist=false, uniquename=false, maxbibnames=99]{biblatex}
+  # - \usepackage[style=authoryear-comp, backend=biber, dashed=false, sorting = ynt, maxcitenames=3,uniquelist=false, uniquename=false, maxbibnames=99]{biblatex}
   # - \renewbibmacro{in:}{}
   # - \DeclareFieldFormat[article, inbook,incollection,inproceedings]{title}{#1}
   # - \DeclareFieldFormat[thesis]{title}{\mkbibitalic{#1}}
