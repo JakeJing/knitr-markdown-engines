@@ -112,7 +112,7 @@ knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
 })
 opts_chunk$set(
   fig.path = "figures/",
-  dev = "cairo_pdf",
+  dev = "quartz_pdf", # better for plot resolution than cairo_pdf
   # dev = "png",
   # dpi = 300,
   dev.args = list(bg = "white"), # or quartz_pdf (for lattice)
