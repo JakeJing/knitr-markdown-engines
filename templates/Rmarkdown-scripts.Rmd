@@ -73,34 +73,11 @@ library(devtools)
 # install_github('jr-packages/stanhl')
 # install_github('JakeJing/stanhl')
 # Note: this only works for python3; need to first install `pip3 install Pygments`; and `xcode-select --install`
-library(stanhl)
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
 library(purrr)
 # devtools::install_github("r-lib/conflicted")
 library(conflicted)
-conflict_prefer("filter", "dplyr")
-conflict_prefer("select", "dplyr")
-conflict_prefer("mutate", "dplyr")
-conflict_prefer("summarise", "dplyr")
-conflict_prefer("map", "purrr")
-conflict_prefer("map_dfr", "purrr")
-conflict_prefer("lag", "dplyr")
-conflict_prefer("extract", "rstan")
-conflict_prefer("accumulate", "purrr")
-conflict_prefer("between", "dplyr")
-conflict_prefer("combine", "dplyr")
-conflict_prefer("expand", "tidyr")
-conflict_prefer("first", "dplyr")
-conflict_prefer("last", "dplyr")
-conflict_prefer("group_rows", "dplyr")
-conflict_prefer("LdFlags", "Rcpp")
-conflict_prefer("pack", "Matrix")
-conflict_prefer("unpack", "Matrix")
-conflict_prefer("registerPlugin", "Rcpp")
-conflict_prefer("transpose", "purrr")
-conflict_prefer("when", "purrr")
-# library(reticulate) # python engine
 # use_python('/usr/local/bin/python3')
 # library(JuliaCall) # julia engine
 knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
@@ -140,7 +117,19 @@ options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
 # citations_1 <- tempfile(fileext = ".bib")
 # file.copy(from = here::here("/Users/jakejing/switchdrive/bib/references.bib"), to = citations_1)
 ```
-
+```{r color the stan code chunk and conflict preferences, results='asis', echo = F}
+library(devtools) # source_url
+# check internet connection
+if(RCurl::url.exists("https://github.com/")){
+  source_url("https://raw.githubusercontent.com/JakeJing/conflict_prefer/main/conflict_prefer.R") # library(conflicted) has been included in the script
+  source_url("https://raw.githubusercontent.com/JakeJing/knitr-markdown-engines/master/templates/stan_highlight/stan_hl.R")
+  # You need to run it before the stan code chunk
+}else{
+  warning("No internet connection!")
+}
+library(stanhl)
+stanhl_init()
+```
 
 \clearpage
 
