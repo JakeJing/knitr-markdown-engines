@@ -27,20 +27,22 @@ header-includes:
   # - \usepackage{color}
   # - \usepackage{xcolor}
 output:
-   #bookdown::pdf_document2:
+   bookdown::pdf_document2: # for cross-reference
    #  includes:
    #    in_header: latextemplates/stanhl.tex
-   pdf_document: # useful when picture name cannot be rendered
+   # pdf_document: # useful when picture name cannot be rendered (cross-reference won't work, pls use bookdown::pdf_document2) 
      fig_crop: true
      fig_caption: true
      latex_engine: xelatex
      keep_tex: true
+     # highlight: haddock # highlight codechunk see also https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/
      citation_package: biblatex # important: will use autocite in latex
      toc: true
      toc_depth: 4
      number_section: true
      pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib","--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl","--template=latextemplates/simple_format_new.tex"]
 link-citations: TRUE
+linkcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -118,6 +120,7 @@ options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
 # citations_1 <- tempfile(fileext = ".bib")
 # file.copy(from = here::here("/Users/jakejing/switchdrive/bib/references.bib"), to = citations_1)
 ```
+
 ```{r color the stan code chunk and conflict preferences, results='asis', echo = F}
 library(devtools) # source_url
 # check internet connection
@@ -196,7 +199,9 @@ Cross-reference of figures, tables and equations
 hist(rnorm(100))
 ```
 
-We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you need to set `include = T` when producing the plot. Otherwise, the co-reference won't work. Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \ref{fig:CTMCgraphs}.
+**Note: this kind of citation co-reference is only working for bookdown::pdf_document2:, not working for pdf_document.**
+
+We can also co-refer a plot in Figure \@ref(fig:histogram-rng). **Note:** you need to set `include = T` when producing the plot. Otherwise, the co-reference won't work. Pls avoid using underscore (`_`) or white space in the co-reference labels. Likewise, you can also use `\@ref(tab/eq:)` to refer to the specific table or equation. See Figure \@ref{fig:CTMCgraphs}.
 
 
 <!-- ![example picture](./figures/histogram-1.png){width=90% height=80%} -->
