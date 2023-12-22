@@ -76,6 +76,7 @@ library(devtools)
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
 library(purrr)
+library(glue)
 # devtools::install_github("r-lib/conflicted")
 library(conflicted)
 # use_python('/usr/local/bin/python3')
