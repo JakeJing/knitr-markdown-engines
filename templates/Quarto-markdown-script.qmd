@@ -4,7 +4,7 @@ author: "Yingqi Jing"
 date: last-modified
 date-format: "MMMM D, YYYY"
 include-in-header:
-  - file: "packages/packages.tex"
+  - file: "/Users/jakejing/git/knitr-markdown-engines/templates/packages/packages.tex"
 format:
   pdf: # latex or PrettyPDF-pdf (install at the project dir via quarto install extension nrennie/PrettyPDF)
     toc-title: Contents
@@ -26,13 +26,13 @@ format:
 bibliography: /Users/jakejing/switchdrive/bib/references.bib
 csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
 # template: latextemplates/simple_format_new.tex # Note: If you use tex template, no need to include pkgs in header (deuplicated)
-link-citations: TRUE
+link-citations: true
 # highlight-style: atom-one-dark/github
 execute:
   warning: false
   # echo: false
-params:
-  yvar: "my parameter value"
+# params:
+#   yvar: "my parameter value"
 # jupyter: python3
 ---
 
@@ -112,7 +112,10 @@ options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
 # file.copy(from = here::here("/Users/jakejing/switchdrive/bib/references.bib"), to = citations_1)
 ```
 
-```{r color the stan code chunk and conflict preferences, results='asis', echo = F}
+```{r}
+#| label: color the stan code chunk and conflict preferences
+#| results: asis
+#| echo: false
 library(devtools) # source_url
 # check internet connection
 if(RCurl::url.exists("https://github.com/")){
