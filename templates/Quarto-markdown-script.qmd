@@ -42,13 +42,11 @@ execute:
 # params:
 #   i: "`r i`"
 library(knitr)
+library(tidyverse)
 library(ggplot2)
 library(gridExtra)
 library(grid)
-library(dplyr)
 library(magrittr)
-library(tidyr) # gather
-library(tibble) # rowtocolumn
 library(kableExtra) # kable
 library(Rcpp)
 library(RcppArmadillo)
@@ -91,6 +89,7 @@ opts_chunk$set(
   fig.width = 6,
   # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.5.app/Contents/Resources/julia/bin'),
   # python.reticulate = T, # not necessary, if use_python() is used above
+  results = "hold", # this is right way of holding results
   message = F,
   warning = F,
   autodep = T,
