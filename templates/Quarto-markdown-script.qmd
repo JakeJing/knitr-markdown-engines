@@ -38,6 +38,7 @@ execute:
 
 ```{r}
 #| label: setup
+#| echo: FALSE
 #| include: FALSE
 # params:
 #   i: "`r i`"
