@@ -18,6 +18,8 @@ format:
     pdf-engine: xelatex
     keep-tex: true
     colorlinks: true
+    code-block-border-left: "white"
+    code-block-bg: "#f8f8f8"
     # fontfamily: libertinus
 # fig-format: pdf # retina, png, jpeg, svg, or pdf
 # fig-cap-location: bottom
@@ -27,7 +29,7 @@ bibliography: /Users/jakejing/switchdrive/bib/references.bib
 csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
 # template: latextemplates/simple_format_new.tex # Note: If you use tex template, no need to include pkgs in header (deuplicated)
 link-citations: true
-highlight-style: pygments # zenburn/pygments/tango/zenburn/themes/mytheme1.theme
+highlight-style: atom-one-light # arrow/zenburn/pygments/tango/zenburn or themes/default.theme
 execute:
   warning: false
   # echo: false
