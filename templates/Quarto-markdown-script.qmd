@@ -3,8 +3,8 @@ title: "Quarto Markdown Template"
 author: "Yingqi Jing"
 date: last-modified
 date-format: "MMMM D, YYYY"
-include-in-header:
-  - file: "/Users/jakejing/git/knitr-markdown-engines/templates/packages/packages.tex"
+# include-in-header: # likely cause problem of citations in latest version of quarto
+#   - file: "/Users/jakejing/git/knitr-markdown-engines/templates/packages/packages.tex"
 format:
   pdf: # latex or PrettyPDF-pdf (install at the project dir via quarto install extension nrennie/PrettyPDF)
     toc-title: Contents
@@ -14,7 +14,7 @@ format:
     lot: true
     number-sections: true
     number-depth: 4
-    cite-method: biblatex
+    # cite-method: biblatex # likely cause problesm in latest version of quarto
     pdf-engine: xelatex
     keep-tex: true
     colorlinks: true

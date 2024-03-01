@@ -1,0 +1,34 @@
+---
+title: "test"
+author: "name"
+date: last-modified
+date-format: "MMMM D, YYYY"
+format:
+  pdf: # latex or PrettyPDF-pdf (install at the project dir via quarto install extension nrennie/PrettyPDF)
+    pdf-engine: xelatex
+    toc-title: Contents
+    toc: true
+    toc-depth: 4
+    lof: true
+    lot: true
+    number-sections: true
+    number-depth: 4
+    keep-tex: true
+    colorlinks: true
+    code-block-border-left: "white"
+    code-block-bg: "#f8f8f8"
+bibliography: ["/Users/jakejing/switchdrive/bib/references.bib"]
+csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
+link-citations: true
+highlight-style: atom-one-light 
+execute:
+  warning: false
+---
+
+\clearpage
+
+@Jaeger2021a applied a slightly modification by enabling dual mutations (i.e., two typological traits can change at the same time). It is unclear to me how they construct the equal-rate model in the $Q$ matrix. This is probably the reason why they did not compare with ER model, since it is unclear how they could do this. @Pagel1994 test the correlated evolution by comparing the rate differences by conditioning the change of one variable while holding constant the other. But if both characters are changed, you cannot find a condition to compare. Of course, @Jaeger2021a took a different approach by applying a linear regression on the stationary probabilities. This may raise another question, if two traits are not correlated (i.e., the change of one will cause the change of another), though both favor a HI ordering. This will give a positive regression as well?
+
+\clearpage
+# References
+
