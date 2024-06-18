@@ -122,13 +122,13 @@ library(devtools) # source_url
 # check internet connection
 if(RCurl::url.exists("https://github.com/")){
   source_url("https://raw.githubusercontent.com/JakeJing/conflict_prefer/main/conflict_prefer.R") # library(conflicted) has been included in the script
-  source_url("https://raw.githubusercontent.com/JakeJing/knitr-markdown-engines/master/templates/stan_highlight/stan_hl.R")
+#  source_url("https://raw.githubusercontent.com/JakeJing/knitr-markdown-engines/master/templates/stan_highlight/stan_hl.R")
   # You need to run it before the stan code chunk
 }else{
   warning("No internet connection!")
 }
-library(stanhl)
-stanhl_init()
+# library(stanhl)
+# stanhl_init()
 ```
 
 
@@ -188,7 +188,7 @@ timesTwo(10) # test function in R chunk or console
 ```{r}
 #| results: asis
 #| echo: false
-stanhl_file("./stanscripts/stan_binom.stan")
+# stanhl_file("./stanscripts/stan_binom.stan")
 # mod <- stan_model(file="./stanscripts/stan_binom.stan", verbose = TRUE)
 ```
 
@@ -212,13 +212,17 @@ convert -density 150 *.pdf -quality 100 -set filename:basename "%[basename]" "%[
 
 ## Cross-reference of figures, tables and equations
 
+In order to decrease the figure sizes, you can try to use png or jpeg rather than pdf output.
+
+
 ```{r}
 #| label: fig-histogram-rng
 #| dev: png
-#| dpi: 300
+#| fig-dpi: 100
 #| fig.width: 5
 #| fig.height: 4
 #| fig.cap: Histogram plot
+#| fig-format: png
 #| echo: False
 hist(rnorm(100))
 ```

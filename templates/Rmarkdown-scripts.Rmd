@@ -73,7 +73,7 @@ registerDoParallel(cores = 6)
 library(rstan)
 library(devtools)
 # install_github('jr-packages/stanhl')
-# install_github('JakeJing/stanhl')
+install_github('JakeJing/stanhl')
 # Note: this only works for python3; need to first install `pip3 install Pygments`; and `xcode-select --install`
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
@@ -252,7 +252,7 @@ Conclusions
 
 We can also add the cross-reference inside the figure cation via `\\ref{fig:}`.
 
-```{tikz, simpletikz, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
+```{tikz, simpletikz2, fig.cap = "A copy of CTMC model in Figure \\@ref(fig:histogram-rng) or Figure \\ref{fig:histogram-rng} (reuse by its labels; doesn't work for read_utf8)", echo = F}
 ```
 
 
