@@ -128,7 +128,7 @@ if(RCurl::url.exists("https://github.com/")){
   warning("No internet connection!")
 }
 # library(stanhl)
-# stanhl_init()
+stanhl_init()
 ```
 
 
@@ -188,7 +188,7 @@ timesTwo(10) # test function in R chunk or console
 ```{r}
 #| results: asis
 #| echo: false
-# stanhl_file("./stanscripts/stan_binom.stan")
+stanhl_file("./stanscripts/stan_binom.stan")
 # mod <- stan_model(file="./stanscripts/stan_binom.stan", verbose = TRUE)
 ```
 

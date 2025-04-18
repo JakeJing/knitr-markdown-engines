@@ -40,7 +40,9 @@ output:
      toc: true
      toc_depth: 4
      number_section: true
-     pandoc_args: ["--variable=lof","--variable=lot","--bibliography=/Users/jakejing/switchdrive/bib/references.bib","--csl=/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl","--template=latextemplates/simple_format_new.tex"]
+     pandoc_args: ["--variable=lof","--variable=lot","--template=latextemplates/simple_format_new.tex"]
+bibliography: "/Users/jakejing/switchdrive/bib/references.bib"
+csl: "/Users/jakejing/switchdrive/bib/unified-style-linguistics.csl"
 link-citations: TRUE
 linkcolor: blue
 ---
