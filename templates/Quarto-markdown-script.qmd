@@ -3,10 +3,9 @@ title: "Quarto Markdown Template"
 author: "Yingqi Jing"
 date: last-modified
 date-format: "MMMM D, YYYY"
-# include-in-header: # likely cause problem of citations in latest version of quarto
-#   - file: "/Users/jakejing/git/knitr-markdown-engines/templates/packages/packages.tex"
 format:
   pdf: # latex or PrettyPDF-pdf (install at the project dir via quarto install extension nrennie/PrettyPDF)
+    pdf-engine: xelatex
     toc-title: Contents
     toc: true
     toc-depth: 4
@@ -14,29 +13,26 @@ format:
     lot: true
     number-sections: true
     number-depth: 4
-    # cite-method: biblatex # likely cause problesm in latest version of quarto
-    pdf-engine: xelatex
-    keep-tex: true
+    # cite-method: biblatex # likely cause problems
+    keep-tex: false
     colorlinks: true
     code-block-border-left: "white"
     code-block-bg: "#f8f8f8"
+    include-in-header: /Users/jakejing/git/knitr-markdown-engines/templates/note-box.tex
     # fontfamily: libertinus
 # fig-format: pdf # retina, png, jpeg, svg, or pdf
 # fig-cap-location: bottom
 # fig-width: 6 
 # fig-height: 5
-bibliography: /Users/jakejing/switchdrive/bib/references.bib
+bibliography: ["/Users/jakejing/switchdrive/bib/references.bib"]
 csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
-# template: latextemplates/simple_format_new.tex # Note: If you use tex template, no need to include pkgs in header (deuplicated)
 link-citations: true
 highlight-style: atom-one-light # arrow/zenburn/pygments/tango/zenburn or themes/default.theme
 execute:
   warning: false
-  # echo: false
-# params:
-#   yvar: "my parameter value"
-# jupyter: python3
----
+filters: 
+  - include-code-files # installed in your working dir (https://github.com/quarto-ext/include-code-files#readme)
+--
 
 ```{r}
 #| label: setup
@@ -119,22 +115,17 @@ options(width = 180, knitr.kable.NA = "", knitr.table.format = "latex")
 #| results: asis
 #| echo: false
 library(devtools) # source_url
-# check internet connection
-if(RCurl::url.exists("https://github.com/")){
-  source_url("https://raw.githubusercontent.com/JakeJing/conflict_prefer/main/conflict_prefer.R") # library(conflicted) has been included in the script
-#  source_url("https://raw.githubusercontent.com/JakeJing/knitr-markdown-engines/master/templates/stan_highlight/stan_hl.R")
-  # You need to run it before the stan code chunk
-}else{
-  warning("No internet connection!")
-}
-# library(stanhl)
-stanhl_init()
+source("~/git/conflict_prefer/conflict_prefer.R")
 ```
 
 
 \clearpage
 
 # Introduction
+
+```{.stan include="./Models/BM_vcv.stan"}
+```
+
 
 For large files, we can cache the file, and use `cache.lazy = T` to reuse the pre-computed results. To avoid overwriting the previously cached file, it is better to set the `cache= F`, when you want to use cachy.lazy to get the previously saved results. In this case, you do not need to cache the file again. You can also load the cached file, and check the environment to see whether the variables have already been saved.
 
