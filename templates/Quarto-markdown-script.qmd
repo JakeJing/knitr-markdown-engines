@@ -32,7 +32,7 @@ execute:
   warning: false
 filters: 
   - include-code-files # installed in your working dir (https://github.com/quarto-ext/include-code-files#readme)
---
+---
 
 ```{r}
 #| label: setup
