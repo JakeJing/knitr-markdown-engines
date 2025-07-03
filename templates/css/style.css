@@ -1,0 +1,67 @@
+
+.figure {
+  text-align: center;
+}
+
+.figure-caption {
+  text-align: center;
+  display: block;
+}
+
+/* CSS for automatic figure numbering in Quarto HTML output */
+/* Simplified approach - increment on caption, not container */
+
+/* Initialize figure counter */
+body {
+  counter-reset: figure-counter;
+}
+
+/* Increment counter and add numbering directly on captions */
+/* This approach is more reliable and avoids double counting */
+figcaption::before {
+  counter-increment: figure-counter;
+  content: "Figure " counter(figure-counter) ": ";
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style all figure containers */
+figure,
+div.quarto-figure,
+.cell-output-display figure {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+/* Style all captions consistently */
+figcaption {
+  margin-top: 0.5em;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Reset counter for each section if needed */
+/* Uncomment if you want figure numbering to restart in each section */
+/*
+h1 {
+  counter-reset: figure-counter;
+}
+*/
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  figure,
+  div.quarto-figure,
+  .cell-output-display figure {
+    margin: 1em 0;
+  }
+
+  figcaption {
+    font-size: 0.85em;
+    padding: 0 1em;
+  }
+}
