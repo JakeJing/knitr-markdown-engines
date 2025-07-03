@@ -1,0 +1,17 @@
+.note {
+  background-color: #f0f0f0; /* Light gray */
+  border: 1px solid #888888;
+  border-radius: 6px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.example {
+  background-color: #e6f2ff; /* Light blue */
+  border: 1px solid #66a3ff; /* Muted blue border */
+  border-radius: 6px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 2px 2px 5px rgba(102, 163, 255, 0.2); /* Softer blue shadow */
+}

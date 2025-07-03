@@ -3,27 +3,38 @@ title: "Quarto Markdown Template"
 author: "Yingqi Jing"
 date: last-modified
 date-format: "MMMM D, YYYY"
+# Global table of contents settings
+toc: true
+toc-title: "Contents"
+toc-depth: 4
+# Global figure and table settings
+lof: true
+lot: true
+# Global numbering settings
+number-sections: true
+number-depth: 4
+# Global code styling
+code-block-border-left: "white"
+code-block-bg: "#f8f8f8"
+# Global document settings
+keep-tex: true
+colorlinks: true
 format:
-  pdf: # latex or PrettyPDF-pdf (install at the project dir via quarto install extension nrennie/PrettyPDF)
+  html:
+    math: mathjax # or katex
+    # theme: materia
+    # fig-fold: false
+    css: 
+      - ./css/shadenote.css
+  pdf: # move before if you want to render it as a pdf
     pdf-engine: xelatex
-    toc-title: Contents
-    toc: true
-    toc-depth: 4
-    lof: true
-    lot: true
-    number-sections: true
-    number-depth: 4
-    # cite-method: biblatex # likely cause problems
-    keep-tex: false
-    colorlinks: true
-    code-block-border-left: "white"
-    code-block-bg: "#f8f8f8"
-    include-in-header: /Users/jakejing/git/knitr-markdown-engines/templates/note-box.tex
-    # fontfamily: libertinus
+    code-font: "Inconsolata"
+    include-in-header: /Users/jakejing/git/knitr-markdown-engines/templates/shadenote/shadenote.tex # only for pdf
+  
 # fig-format: pdf # retina, png, jpeg, svg, or pdf
 # fig-cap-location: bottom
-# fig-width: 6 
-# fig-height: 5
+# fig-width: 16
+# fig-height: 8
 bibliography: ["/Users/jakejing/switchdrive/bib/references.bib"]
 csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
 link-citations: true
@@ -31,15 +42,15 @@ highlight-style: atom-one-light # arrow/zenburn/pygments/tango/zenburn or themes
 execute:
   warning: false
 filters: 
-  - include-code-files # installed in your working dir (https://github.com/quarto-ext/include-code-files#readme)
+  - include-code-files # installed in your working dir (https://github.com/quarto-ext/include-code-files#readme) via >> quarto add quarto-ext/include-code-files
+  - shadenote
 ---
+
 
 ```{r}
 #| label: setup
 #| echo: FALSE
 #| include: FALSE
-# params:
-#   i: "`r i`"
 library(knitr)
 library(tidyverse)
 library(ggplot2)
@@ -60,17 +71,14 @@ library(doParallel)
 registerDoParallel(cores = 6)
 library(rstan)
 library(devtools)
-# install_github('jr-packages/stanhl')
-# install_github('JakeJing/stanhl')
-# Note: this only works for python3; need to first install `pip3 install Pygments`; and `xcode-select --install`
 library(pdftools) # tikz
 library(tikzDevice) # tikz device
 library(purrr)
 library(glue)
+library(ggpubr) # ggarrange
+source('./Functions/Functions.R')
 # devtools::install_github("r-lib/conflicted")
 library(conflicted)
-# use_python('/usr/local/bin/python3')
-# library(JuliaCall) # julia engine
 knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
   if (before) {
     par(family = my.font)
@@ -80,20 +88,18 @@ knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
 })
 opts_chunk$set(
   fig.path = "figures/",
-  dev = "quartz_pdf", # better for plot resolution than cairo_pdf
+  # dev = "quartz_pdf", # better for plot resolution than cairo_pdf, comment this to avoid folding plot in html
   # dev = "png",
   # dpi = 300,
   dev.args = list(bg = "white"), # or quartz_pdf (for lattice)
-  fig.height = 5,
-  fig.width = 6,
-  # engine.path = list(python = '/usr/local/bin/python3',julia = '/Applications/Julia-1.5.app/Contents/Resources/julia/bin'),
-  # python.reticulate = T, # not necessary, if use_python() is used above
+  fig.height = 8,
+  fig.width = 10,
   results = "hold", # this is right way of holding results
   message = F,
   warning = F,
   autodep = T,
   cache.comments = F,
-  crop = T,
+  crop = F,
   comment = NA,
   pars = T
 )
@@ -118,12 +124,11 @@ library(devtools) # source_url
 source("~/git/conflict_prefer/conflict_prefer.R")
 ```
 
-
 \clearpage
 
 # Introduction
 
-```{.stan include="./Models/BM_vcv.stan"}
+```{.stan include="./Models/linear_reg.stan"}
 ```
 
 
