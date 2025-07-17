@@ -43,7 +43,8 @@ execute:
   warning: false
 filters: 
   - include-code-files # installed in your working dir (https://github.com/quarto-ext/include-code-files#readme) via >> quarto add quarto-ext/include-code-files
-  - shadenote
+  - shadenote # has been integrated in include-code-files
+  - social-embeds # >> quarto install extension sellorm/quarto-social-embeds
 ---
 
 
