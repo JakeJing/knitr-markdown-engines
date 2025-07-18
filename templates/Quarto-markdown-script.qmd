@@ -35,6 +35,7 @@ format:
 # fig-cap-location: bottom
 # fig-width: 16
 # fig-height: 8
+code-fold: false
 bibliography: ["/Users/jakejing/switchdrive/bib/references.bib"]
 csl: /Users/jakejing/switchdrive/bib/unified-style-linguistics.csl
 link-citations: true
