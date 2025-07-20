@@ -17,7 +17,7 @@ number-depth: 4
 code-block-border-left: "white"
 code-block-bg: "#f8f8f8"
 # Global document settings
-keep-tex: true
+keep-tex: false
 colorlinks: true
 format:
   html:
@@ -78,7 +78,7 @@ library(tikzDevice) # tikz device
 library(purrr)
 library(glue)
 library(ggpubr) # ggarrange
-source('./Functions/Functions.R')
+# source('./Functions/Functions.R')
 # devtools::install_github("r-lib/conflicted")
 library(conflicted)
 knit_hooks$set(crop = hook_pdfcrop, pars = function(before, options, envir) {
